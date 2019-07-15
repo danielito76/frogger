@@ -1,4 +1,102 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
 body {
-  background-color: blue;
+  margin: 0;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid;
+  padding: 10px 0;
+}
+
+.game {
+  width: 600px;
+  height: 600px;
+  margin: auto;
+  padding: 50px;
+}
+
+.grid {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid div {
+  width: calc(100% / 9);
+  height: calc(100% / 9);
+  border: 1px solid green;
+}
+
+.frog {
+  background-image: url('../img/frog.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.lily {
+  background-image: url('../img/lily.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.lily_frog {
+  background-image: url('https://image.shutterstock.com/image-vector/happy-frog-on-lily-pad-260nw-40619779.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.car {
+  background-color: red;
+  height: 100px;
+  width: 700px;
+}
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+
+  border-right:60px solid green;
+}
+.panelLeft {
+  background-color: green;
   color: white;
+  height: 100px;
+  width: 200px;
+  padding: 25px;
+  text-align: center;
+}
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+
+  border-left: 60px solid red;
+}
+.panelRight {
+  background-color: red;
+  color: white;
+  height: 100px;
+  width: 200px;
+  margin-right: 0px;
+  padding: 25px;
+  text-align: center;
+}
+
+.trunk {
+  background-color: yellow;
 }
