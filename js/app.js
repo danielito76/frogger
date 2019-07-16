@@ -123,10 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
         score++
         scoreBoard.textContent = score
       } squares[currentFrogIndex].classList.add('frog')
-    } if (squares[currentFrogIndex].classList.contains('river')) {
-      gameOverTrunks()
+    // } if (squares[currentFrogIndex].classList.contains('river')) {
+    //   gameOverTrunks()
+    } if (squares[1, 3, 5, 7].classList.contains('lily_frog')) {
+      youWin()
     }
   }
+
   document.addEventListener('keyup', moveFrog)
 
 
@@ -222,6 +225,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const upperFrontTrunkTimer = setInterval(moveUpperFrontTrunk, 1500)
   let upperFrontTrunkIndex = 8
   function moveUpperFrontTrunk() {
+    if (squares[upperFrontTrunkIndex].classList.contains('frog')) {
+      squares[currentFrogIndex].classList.remove('frog')
+      currentFrogIndex +=1
+      squares[currentFrogIndex].classList.add('frog')
+      if (currentFrogIndex === 18) {
+        gameOverTrunks()
+      }
+    }
     squares[upperFrontTrunkIndex].classList.add('river')
     squares[upperFrontTrunkIndex].classList.remove('trunk')
     upperFrontTrunkIndex += 1
@@ -240,6 +251,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const upperBackTrunkTimer = setInterval(moveUpperAboveTrunk, 1500)
   let upperBackTrunkIndex = 7
   function moveUpperAboveTrunk() {
+    if (squares[upperBackTrunkIndex].classList.contains('frog')) {
+      squares[currentFrogIndex].classList.remove('frog')
+      currentFrogIndex +=1
+      squares[currentFrogIndex].classList.add('frog')
+      if (currentFrogIndex === 18) {
+        gameOverTrunks()
+      }
+    }
     squares[upperBackTrunkIndex].classList.add('river')
     squares[upperBackTrunkIndex].classList.remove('trunk')
     upperBackTrunkIndex += 1
@@ -258,10 +277,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
   // Middle trunk
-  const middleFrontTrunkTimer = setInterval(moveMiddleFrontTrunk, 500)
+  const middleFrontTrunkTimer = setInterval(moveMiddleFrontTrunk, 750)
   let middleFrontTrunkIndex = 17
   function moveMiddleFrontTrunk() {
+    if (squares[middleFrontTrunkIndex].classList.contains('frog')) {
+      squares[currentFrogIndex].classList.remove('frog')
+      currentFrogIndex +=1
+      squares[currentFrogIndex].classList.add('frog')
+      if (currentFrogIndex === 27) {
+        gameOverTrunks()
+      }
+    }
     squares[middleFrontTrunkIndex].classList.add('river')
     squares[middleFrontTrunkIndex].classList.remove('trunk')
     middleFrontTrunkIndex += 1
@@ -277,9 +305,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const middleBackTrunkTimer = setInterval(moveMiddleBackTrunk, 500)
+  const middleBackTrunkTimer = setInterval(moveMiddleBackTrunk, 750)
   let middleBackTrunkIndex = 16
   function moveMiddleBackTrunk() {
+    if (squares[middleBackTrunkIndex].classList.contains('frog')) {
+      squares[currentFrogIndex].classList.remove('frog')
+      currentFrogIndex +=1
+      squares[currentFrogIndex].classList.add('frog')
+      if (currentFrogIndex === 27) {
+        gameOverTrunks()
+      }
+    }
     squares[middleBackTrunkIndex].classList.add('river')
     squares[middleBackTrunkIndex].classList.remove('trunk')
     middleBackTrunkIndex += 1
@@ -302,6 +338,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const lowerFrontTrunkTimer = setInterval(moveLowerFrontTrunk, 1000)
   let lowerFrontTrunkIndex = 26
   function moveLowerFrontTrunk() {
+    if (squares[lowerFrontTrunkIndex].classList.contains('frog')) {
+      squares[currentFrogIndex].classList.remove('frog')
+      currentFrogIndex +=1
+      squares[currentFrogIndex].classList.add('frog')
+      if (currentFrogIndex === 36) {
+        gameOverTrunks()
+      }
+    }
     squares[lowerFrontTrunkIndex].classList.add('river')
     squares[lowerFrontTrunkIndex].classList.remove('trunk')
     lowerFrontTrunkIndex += 1
@@ -320,6 +364,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const lowerBackTrunkTimer = setInterval(moveLowerBackTrunk, 1000)
   let lowerBackTrunkIndex = 25
   function moveLowerBackTrunk() {
+    if (squares[lowerBackTrunkIndex].classList.contains('frog')) {
+      squares[currentFrogIndex].classList.remove('frog')
+      currentFrogIndex +=1
+      squares[currentFrogIndex].classList.add('frog')
+      if (currentFrogIndex === 36) {
+        gameOverTrunks()
+      }
+    }
     squares[lowerBackTrunkIndex].classList.add('river')
     squares[lowerBackTrunkIndex].classList.remove('trunk')
     lowerBackTrunkIndex += 1
@@ -379,6 +431,60 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(lowerFrontTrunkTimer)
     clearInterval(lowerBackTrunkTimer)
   }
+
+
+
+  const youWin = function () {
+    // create an alpha channel game over
+      const youWinScreen = document.createElement('div')
+      youWinScreen.textContent = 'You Win, dude!'
+      youWinScreen.setAttribute('class', 'youWin')
+      document.body.appendChild(youWinScreen)
+      const fullScreen = document.getElementById('fullScreeen')
+      fullScreen.insertBefore(youWinScreen, fullScreen.childNodes[0])
+      // change frog background
+      squares[currentFrogIndex].classList.remove('frog')
+      squares[currentFrogIndex].classList.add('frog_hit')
+      // stop frog
+      frogEnabled = false
+      //stop timer trunks
+      clearInterval(upperFrontTrunkTimer)
+      clearInterval(upperBackTrunkTimer)
+      clearInterval(middleFrontTrunkTimer)
+      clearInterval(middleBackTrunkTimer)
+      clearInterval(lowerFrontTrunkTimer)
+      clearInterval(lowerBackTrunkTimer)
+      //stop timer cars
+      clearInterval(carBelowTimer)
+      clearInterval(carAboveTimer)
+  }
+
+
+
+
+
+
+
+
+  // count Up
+
+  // timerId = setInterval(countUp, 1000)
+  //
+  // function countUp() {
+  //   currentFrogIndex++
+  //   console.log(currentFrogIndex)
+  //
+  //   if(currentFrogIndex === 80) {
+  //     // gameOverTrunks()
+  //     clearInterval(timerId)
+  //   }
+  // }
+  // // setInterval(countdown, 1000)
+  //
+
+
+
+
 
 
 
