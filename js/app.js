@@ -5,27 +5,156 @@ document.addEventListener('DOMContentLoaded', () => {
   const squares = document.querySelectorAll('.grid div')
   let currentFrogIndex = 76
   const width = 9
-  // const timeBoard = document.querySelector('.timer')
-  // let timeRemaining = +timeBoard.textContent
-  // let timerId = null
+  const timeBoard = document.querySelector('.timer')
+  let timeRemaining = +timeBoard.textContent
+  let timerId = null
   const scoreBoard = document.querySelector('.score')
   let score = 0
-  let frogEnabled = true
+  let frogEnabled = false
+  const audioButton = document.querySelector('#stopAllAudios')
+
+
+
+
+
+
+
+  //=================SOUNDS=================================================
+  //creating background sound
+  const backgroundSound = document.createElement('AUDIO')
+  backgroundSound.loop = true
+  backgroundSound.src = 'sounds/background.wav'
+
+  const playBackgroundSound = document.getElementById('backgroundSound')
+
+  playBackgroundSound.addEventListener('click', () => {
+    if(backgroundSound.paused) {
+      backgroundSound.play()
+    } else {
+      backgroundSound.pause()
+      backgroundSound.currentTime = 0
+    }
+  })
+
+
+  //creating frog call
+  const frogCall = document.createElement('AUDIO')
+  frogCall.src = 'sounds/frogonce.wav'
+
+  //creating bud luck sound
+  const badLuck = document.createElement('AUDIO')
+  badLuck.src = 'sounds/badluck.wav'
+
+  //creating victory sound
+  const youWinSound = document.createElement('AUDIO')
+  youWinSound.src = 'sounds/youwin.mp3'
+
+  //creating horn sound
+  const horn = document.createElement('AUDIO')
+  horn.src = 'sounds/car_horn.wav'
+
+  //creating second horn sound
+  const secondHorn = document.createElement('AUDIO')
+  secondHorn.src = 'sounds/second_horn.wav'
+
+  //creating Start sound
+  const startSound = document.createElement('AUDIO')
+  startSound.src = 'sounds/start.wav'
+
+  //creating frog on the pad sound
+  const frogOnThePad = document.createElement('AUDIO')
+  frogOnThePad.src = 'sounds/got_the_pad.wav'
+
+  const allAudio = [frogCall, badLuck, youWinSound, horn, secondHorn]
+
+
+  // ======try stop all sounds=======================
+  // let i
+  audioButton.addEventListener('click', () => {
+    allAudio.forEach(audio => audio.pause())
+  })
+
+
+
+
 
   // =========Countdown==================
-  // function countdown() {
-  //   timeRemaining--
-  //   timeBoard.textContent = timeRemaining
-  //
-  //   if(timeRemaining === 0) {
-  //     clearInterval(timerId)
-  //   }
-  // }
-  //
-  // timerId = setInterval(countdown, 1000)
+  function countdown() {
+    timeRemaining--
+    timeBoard.textContent = timeRemaining
+
+    if(timeRemaining === 0) {
+      clearInterval(timerId)
+    }
+  }
+
+  timerId = setInterval(countdown, 1000)
   // ========= end of Countdown===============
 
 
+
+
+
+
+  //================FROG================================================
+
+  // Make the frog able to move
+  function moveFrog(e) {
+    if (frogEnabled === true) {
+      squares[currentFrogIndex].classList.remove('frog')
+      // const el = document.getElementById('firstFrog')
+      // el.remove()
+      // document.getElementById('firstFrog').classList.remove('firstFrog')
+
+      switch(e.keyCode) {
+        case 37:
+          if(currentFrogIndex % width !== 0) currentFrogIndex -= 1
+          frogCall.play()
+          break
+        case 38:
+          if(currentFrogIndex - width >= 0) currentFrogIndex -= width
+          frogCall.play()
+          break
+        case 39:
+          if(currentFrogIndex % width < width - 1) currentFrogIndex += 1
+          frogCall.play()
+          break
+        case 40:
+          if(currentFrogIndex + width < width * width) currentFrogIndex += width
+          frogCall.play()
+          break
+      }if (currentFrogIndex > 45 && currentFrogIndex < 62 && carAboveIndex > 45) {
+        horn.play()
+        secondHorn.play()
+      }if (currentFrogIndex > 45 && currentFrogIndex < 62 && carBelowIndex < 62) {
+        secondHorn.play()
+      }
+      if(squares[currentFrogIndex].classList.contains('lily')) {
+        frogOnThePad.play()
+        squares[currentFrogIndex].classList.add('lily_frog')
+        currentFrogIndex = 76
+        score++
+        scoreBoard.textContent = score
+      } squares[currentFrogIndex].classList.add('frog')
+    // } if (squares[currentFrogIndex].classList.contains('river')) {
+    //   gameOverTrunks()
+    } if (squares[1, 3, 5, 7].classList.contains('lily_frog')) {
+      youWin()
+    }
+  }
+
+  document.addEventListener('keyup', moveFrog)
+
+
+
+
+
+
+
+
+
+
+  //=====================CARS===================================================
 
   //==============first try of two lines of cars==========
   // const squaresCarsAbove = document.querySelectorAll('.squaresCarsAbove')
@@ -44,10 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // }
   // // repeat every 3000ms
   // timerId = setInterval(createCarsAbove, 3000)
-  //==============end of first try of two lines of cars==========
-
-
-
+  //==============end of first try of two lines of cars========
 
   //==========Possible car with increment============
   // function randRange(data) {
@@ -56,19 +182,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // }
   // function toggleCarRandom() {
   //   var timeArray = new Array(1500, 1250, 2000, 3000, 3500, 1500)
-    const carAboveTimer = setInterval(moveCarAbove, 500)
-    let carAboveIndex = 44
-    function moveCarAbove() {
+  let carAboveTimer = setInterval(moveCarAbove, 500)
+  let carAboveIndex = 44
+  function moveCarAbove() {
+    squares[carAboveIndex].classList.remove('car')
+    carAboveIndex += 1
+    squares[carAboveIndex].classList.add('car')
+    if(carAboveIndex > 53) {
       squares[carAboveIndex].classList.remove('car')
-      carAboveIndex += 1
-      squares[carAboveIndex].classList.add('car')
-      if(carAboveIndex > 53) {
-        squares[carAboveIndex].classList.remove('car')
-        carAboveIndex = 44
-      } else if(squares[currentFrogIndex] === squares[carAboveIndex]) {
-        gameOverCars()
-      }
+      carAboveIndex = 44
+    } else if(squares[currentFrogIndex] === squares[carAboveIndex]) {
+      gameOverCars()
     }
+  }
   //   clearInterval(timer)
   //   timer = setInterval(toggleCarRandom, randRange(timeArray))
   // }
@@ -79,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  const carBelowTimer = setInterval(moveCarBelow, 300)
+  let carBelowTimer = setInterval(moveCarBelow, 300)
   let carBelowIndex = 62
   function moveCarBelow() {
     squares[carBelowIndex].classList.remove('car')
@@ -99,103 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  // Make the frog able to move
-  function moveFrog(e) {
-    if (frogEnabled) {
-      squares[currentFrogIndex].classList.remove('frog')
-
-      switch(e.keyCode) {
-        case 37:
-          if(currentFrogIndex % width !== 0) currentFrogIndex -= 1
-          break
-        case 38:
-          if(currentFrogIndex - width >= 0) currentFrogIndex -= width
-          break
-        case 39:
-          if(currentFrogIndex % width < width - 1) currentFrogIndex += 1
-          break
-        case 40:
-          if(currentFrogIndex + width < width * width) currentFrogIndex += width
-          break
-      } if(squares[currentFrogIndex].classList.contains('lily')) {
-        squares[currentFrogIndex].classList.add('lily_frog')
-        currentFrogIndex = 76
-        score++
-        scoreBoard.textContent = score
-      } squares[currentFrogIndex].classList.add('frog')
-    // } if (squares[currentFrogIndex].classList.contains('river')) {
-    //   gameOverTrunks()
-    } if (squares[1, 3, 5, 7].classList.contains('lily_frog')) {
-      youWin()
-    }
-  }
-
-  document.addEventListener('keyup', moveFrog)
-
-
-
-
-  // // Make the frog able to move
-  // function moveFrog(e) {
-  //   if (frogEnabled) {
-  //     squares[currentFrogIndex].classList.remove('frog')
-  //
-  //     switch(e.keyCode) {
-  //       case 37:
-  //         if(currentFrogIndex % width !== 0) currentFrogIndex -= 1
-  //         break
-  //       case 38:
-  //         if(currentFrogIndex - width >= 0) currentFrogIndex -= width
-  //         break
-  //       case 39:
-  //         if(currentFrogIndex % width < width - 1) currentFrogIndex += 1
-  //         break
-  //       case 40:
-  //         if(currentFrogIndex + width < width * width) currentFrogIndex += width
-  //         break
-  //     } if(squares[currentFrogIndex].classList.contains('lily')) {
-  //       squares[currentFrogIndex].classList.add('lily_frog')
-  //       currentFrogIndex = 76
-  //       score++
-  //       scoreBoard.textContent = score
-  //     } if (squares[currentFrogIndex].classList.contains('river')) {
-  //       gameOverTrunks()
-  //     } document.addEventListener('keyup', moveFrog)
-  //   }
-  // }
-
-
-
-
-
-
-
-
-
-
-  //=============variables=================================
-  // function moveFrogOnUpperTrunk () {
-  //   squares[frogOnTrunkIndex].classList.remove('frog')
-  //   const frogOnTrunkIndex = currentFrogIndex++
-  //   squares[frogOnTrunkIndex].classList.add('frog')
-  // }
-  // setInterval(moveFrogOnUpperTrunk, 1000)
-  //
-  // const increment = 1
-  // function frogOnTrunkIndex () {
-  //   currentFrogIndex + increment
-  // }
-  // // // setInterval(frogOnTrunkIndex, 1000)
-  // console.log(frogOnTrunkIndex)
-  // // console.log(currentFrogIndex)
-  //=============variables=================================
-
-
-
-
-
-
-
+  //=====================TRUNKS===================================================
 
 
   //=============Trunk try with array==============
@@ -222,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // Upper trunk
-  const upperFrontTrunkTimer = setInterval(moveUpperFrontTrunk, 1500)
+  const upperFrontTrunkTimer = setInterval(moveUpperFrontTrunk, 2000)
   let upperFrontTrunkIndex = 8
   function moveUpperFrontTrunk() {
     if (squares[upperFrontTrunkIndex].classList.contains('frog')) {
@@ -248,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const upperBackTrunkTimer = setInterval(moveUpperAboveTrunk, 1500)
+  const upperBackTrunkTimer = setInterval(moveUpperAboveTrunk, 2000)
   let upperBackTrunkIndex = 7
   function moveUpperAboveTrunk() {
     if (squares[upperBackTrunkIndex].classList.contains('frog')) {
@@ -279,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // Middle trunk
-  const middleFrontTrunkTimer = setInterval(moveMiddleFrontTrunk, 750)
+  const middleFrontTrunkTimer = setInterval(moveMiddleFrontTrunk, 1000)
   let middleFrontTrunkIndex = 17
   function moveMiddleFrontTrunk() {
     if (squares[middleFrontTrunkIndex].classList.contains('frog')) {
@@ -305,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const middleBackTrunkTimer = setInterval(moveMiddleBackTrunk, 750)
+  const middleBackTrunkTimer = setInterval(moveMiddleBackTrunk, 1000)
   let middleBackTrunkIndex = 16
   function moveMiddleBackTrunk() {
     if (squares[middleBackTrunkIndex].classList.contains('frog')) {
@@ -335,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // Lower trunk
-  const lowerFrontTrunkTimer = setInterval(moveLowerFrontTrunk, 1000)
+  const lowerFrontTrunkTimer = setInterval(moveLowerFrontTrunk, 500)
   let lowerFrontTrunkIndex = 26
   function moveLowerFrontTrunk() {
     if (squares[lowerFrontTrunkIndex].classList.contains('frog')) {
@@ -361,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const lowerBackTrunkTimer = setInterval(moveLowerBackTrunk, 1000)
+  const lowerBackTrunkTimer = setInterval(moveLowerBackTrunk, 500)
   let lowerBackTrunkIndex = 25
   function moveLowerBackTrunk() {
     if (squares[lowerBackTrunkIndex].classList.contains('frog')) {
@@ -389,12 +419,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
+  //=====================GAMEOVERandYOUWIN======================================
 
 
   const gameOverCars = function () {
     // create an alpha channel game over
     const gameOverScreen = document.createElement('div')
+    badLuck.play()
     gameOverScreen.textContent = 'Game Over'
     gameOverScreen.setAttribute('class', 'gameOver')
     document.body.appendChild(gameOverScreen)
@@ -413,6 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const gameOverTrunks = function () {
     // create an alpha channel game over
     const gameOverScreen = document.createElement('div')
+    badLuck.play()
     gameOverScreen.textContent = 'Game Over'
     gameOverScreen.setAttribute('class', 'gameOver')
     document.body.appendChild(gameOverScreen)
@@ -436,51 +468,141 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const youWin = function () {
     // create an alpha channel game over
-      const youWinScreen = document.createElement('div')
-      youWinScreen.textContent = 'You Win, dude!'
-      youWinScreen.setAttribute('class', 'youWin')
-      document.body.appendChild(youWinScreen)
-      const fullScreen = document.getElementById('fullScreeen')
-      fullScreen.insertBefore(youWinScreen, fullScreen.childNodes[0])
-      // change frog background
-      squares[currentFrogIndex].classList.remove('frog')
-      squares[currentFrogIndex].classList.add('frog_hit')
-      // stop frog
-      frogEnabled = false
-      //stop timer trunks
-      clearInterval(upperFrontTrunkTimer)
-      clearInterval(upperBackTrunkTimer)
-      clearInterval(middleFrontTrunkTimer)
-      clearInterval(middleBackTrunkTimer)
-      clearInterval(lowerFrontTrunkTimer)
-      clearInterval(lowerBackTrunkTimer)
-      //stop timer cars
-      clearInterval(carBelowTimer)
-      clearInterval(carAboveTimer)
+    const youWinScreen = document.createElement('div')
+    youWinSound.play()
+    youWinScreen.textContent = 'You Win, dude!'
+    youWinScreen.setAttribute('class', 'youWin')
+    document.body.appendChild(youWinScreen)
+    const fullScreen = document.getElementById('fullScreeen')
+    fullScreen.insertBefore(youWinScreen, fullScreen.childNodes[0])
+    // change frog background
+    squares[currentFrogIndex].classList.remove('frog')
+    // stop frog
+    frogEnabled = false
+    //stop timer countdown
+    clearInterval(timerId)
+    //stop timer trunks
+    clearInterval(upperFrontTrunkTimer)
+    clearInterval(upperBackTrunkTimer)
+    clearInterval(middleFrontTrunkTimer)
+    clearInterval(middleBackTrunkTimer)
+    clearInterval(lowerFrontTrunkTimer)
+    clearInterval(lowerBackTrunkTimer)
+    //stop timer cars
+    clearInterval(carBelowTimer)
+    clearInterval(carAboveTimer)
   }
 
+  // =============Reset function =======================================================
 
-
-
-
-
-
-
-  // count Up
-
-  // timerId = setInterval(countUp, 1000)
   //
-  // function countUp() {
-  //   currentFrogIndex++
-  //   console.log(currentFrogIndex)
-  //
-  //   if(currentFrogIndex === 80) {
-  //     // gameOverTrunks()
-  //     clearInterval(timerId)
-  //   }
+  // function resetEverything () {
+  //   squares[currentFrogIndex].classList.remove('frog')
+  //   clearInterval(upperFrontTrunkTimer)
+  //   clearInterval(upperBackTrunkTimer)
+  //   clearInterval(middleFrontTrunkTimer)
+  //   clearInterval(middleBackTrunkTimer)
+  //   clearInterval(lowerFrontTrunkTimer)
+  //   clearInterval(lowerBackTrunkTimer)
+  //   clearInterval(carBelowTimer)
+  //   clearInterval(carAboveTimer)
+  //   clearInterval(timerId)
+  //   currentFrogIndex = 76
+  //   timeRemaining = 60
+  //   score = 0
+  //   frogEnabled = true
+  //   squares[currentFrogIndex].classList.add('frog')
+  //   // carAboveIndex = 44
+  //   // carBelowIndex = 62
+  //   // upperFrontTrunkIndex = 8
+  //   // upperBackTrunkIndex = 7
+  //   // middleFrontTrunkIndex = 17
+  //   // middleBackTrunkIndex = 16
+  //   // lowerFrontTrunkIndex = 26
+  //   // lowerBackTrunkIndex = 25
+  //   timeBoard.textContent = timeRemaining
+  //   scoreBoard.textContent = score
   // }
-  // // setInterval(countdown, 1000)
+  // document.getElementById('reset').addEventListener('click', resetEverything)
   //
+  //
+  // function start(){
+  //   clearInterval(timerId)
+  //   timerId = setInterval(countdown, 1000)
+  //   clearInterval(carAboveTimer)
+  //   carAboveTimer = setInterval(moveCarAbove, 500)
+  //   clearInterval(carBelowTimer)
+  //   carBelowTimer = setInterval(moveCarBelow, 300)
+  // }
+  // document.getElementById('btStart').addEventListener('click', start)
+
+
+
+
+
+
+  function resetEverything () {
+    clearInterval(upperFrontTrunkTimer)
+    clearInterval(upperBackTrunkTimer)
+    clearInterval(middleFrontTrunkTimer)
+    clearInterval(middleBackTrunkTimer)
+    clearInterval(lowerFrontTrunkTimer)
+    clearInterval(lowerBackTrunkTimer)
+    clearInterval(carBelowTimer)
+    clearInterval(carAboveTimer)
+    clearInterval(timerId)
+    squares[currentFrogIndex].classList.remove('frog')
+    squares[carBelowIndex].classList.remove('car')
+    squares[carAboveIndex].classList.remove('car')
+    squares[upperFrontTrunkIndex].classList.remove('trunk')
+    squares[upperBackTrunkIndex].classList.remove('trunk')
+    squares[middleFrontTrunkIndex].classList.remove('trunk')
+    squares[middleBackTrunkIndex].classList.remove('trunk')
+    squares[lowerFrontTrunkIndex].classList.remove('trunk')
+    squares[lowerBackTrunkIndex].classList.remove('trunk')
+    currentFrogIndex = 76
+    timeRemaining = 60
+    score = 0
+    carAboveIndex = 44
+    carBelowIndex = 62
+    upperFrontTrunkIndex = 8
+    upperBackTrunkIndex = 7
+    middleFrontTrunkIndex = 17
+    middleBackTrunkIndex = 16
+    lowerFrontTrunkIndex = 26
+    lowerBackTrunkIndex = 25
+    squares[currentFrogIndex].classList.add('frog')
+    squares[carBelowIndex].classList.add('car')
+    squares[carAboveIndex].classList.add('car')
+    squares[upperFrontTrunkIndex].classList.add('trunk')
+    squares[upperBackTrunkIndex].classList.add('trunk')
+    squares[middleFrontTrunkIndex].classList.add('trunk')
+    squares[middleBackTrunkIndex].classList.add('trunk')
+    squares[lowerFrontTrunkIndex].classList.add('trunk')
+    squares[lowerBackTrunkIndex].classList.add('trunk')
+    timeBoard.textContent = timeRemaining
+    scoreBoard.textContent = score
+    frogEnabled = false
+  }
+  document.getElementById('reset').addEventListener('click', resetEverything)
+
+
+  function start(){
+    startSound.play()
+    frogEnabled = true
+    clearInterval(timerId)
+    timerId = setInterval(countdown, 1000)
+    clearInterval(carAboveTimer)
+    carAboveTimer = setInterval(moveCarAbove, 500)
+    clearInterval(carBelowTimer)
+    carBelowTimer = setInterval(moveCarBelow, 300)
+  }
+  document.getElementById('btStart').addEventListener('click', start)
+
+
+
+
+
 
 
 

@@ -3,22 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Frogger</title>
+    <link href="https://fonts.googleapis.com/css?family=Barriecito&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/app.js" charset="utf-8"></script>
   </head>
   <body>
-    <!-- <div class="arrow-left">
-    </div>
-    <div class="panelLeft">
-      HOME
-    </div> -->
     <div class="game">
       <header>
         <div class="score">0</div>
-        <div class="timer">10</div>
+        <div class="timer">60</div>
       </header>
-
       <div id='fullScreeen' class="grid">
+        <!-- <div class="firstFrog" id="firstFrog"></div> -->
         <div class='river' id="zero"></div>
         <div class="lily" id="one"></div>
         <div class='river' id="two"></div>
@@ -101,13 +97,12 @@
         <div id="seventy_nine"></div>
         <div id="eighty"></div>
       </div>
-      <button type="button" name="button" id='btStart'>Start</button>
-      <button type="button" name="button" id='reset'>Reset</button>
+      <section class="buttonssection">
+        <button type="button" name="button" id='btStart'>Start</button>
+        <button type="button" name="button" id='reset'>Reset</button>
+        <button type="button" name="button" id='backgroundSound'>Sound</button>
+        <button type="button" name="button" id='stopAllAudios'>Stop Audio</button>
+      </section>
     </div>
-    <!-- <div class="panelRight">
-      Workplace
-    </div>
-    <div class="arrow-right">
-    </div> -->
   </body>
 </html>
