@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let frogEnabled = false
   const gameOver = document.querySelector('.gameOver')
   const youWinScreen = document.querySelector('.youWin')
+  const frogFly = document.querySelector('.test')
 
   //SOUNDS
   // const audioButton = document.querySelector('#stopAllAudios')
@@ -22,7 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
   backgroundSound.loop = true
   backgroundSound.src = 'sounds/background.wav'
 
+  const roosterSound = document.createElement('AUDIO')
+  roosterSound.src = 'sounds/rooster.wav'
+
   const playBackgroundSound = document.getElementById('backgroundSound')
+  const playRoosterSound = document.getElementById('backgroundSound')
+  const playFrogEats = document.getElementById('frogEats')
 
   //creating frog call
   const frogCall = document.createElement('AUDIO')
@@ -51,6 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
   //creating frog on the pad sound
   const frogOnThePad = document.createElement('AUDIO')
   frogOnThePad.src = 'sounds/got_the_pad.wav'
+
+  //creating frog eating sound
+  const frogEats = document.createElement('AUDIO')
+  frogEats.loop = true
+  frogEats.src = 'sounds/frog_eats.mp3'
 
   //Cars
   let carAboveTimer = setInterval(moveCarAbove, 500)
@@ -91,6 +102,28 @@ document.addEventListener('DOMContentLoaded', () => {
       backgroundSound.currentTime = 0
     }
   })
+
+  playRoosterSound.addEventListener('click', () => {
+    if(roosterSound.paused) {
+      roosterSound.play()
+    } else {
+      roosterSound.pause()
+      roosterSound.currentTime = 0
+    }
+  })
+
+  playFrogEats.addEventListener('click', () => {
+    if(frogEats.paused) {
+      frogEats.play()
+    } else {
+      frogEats.pause()
+      frogEats.currentTime = 0
+    }
+  })
+
+
+
+
   // ======try stop all sounds=======================
   // const allAudio = [frogCall, badLuck, youWinSound, horn, secondHorn]
   // let i
@@ -108,11 +141,40 @@ document.addEventListener('DOMContentLoaded', () => {
       gameOverFunction()
     }
   }
+  const startRestart = document.getElementById('btStart')
+  startRestart.addEventListener('click', () => {
+    if(timerId) {
+      clearInterval(timerId)
+      timerId = null
+    } else {
+      timerId = setInterval(countdown, 1000)
+    }
+  })
 
-  timerId = setInterval(countdown, 1000)
+
+  // timerId = setInterval(countdown, 1000)
   // ========= end of Countdown===============
 
-
+  // function countdown() {
+  //   currentTime--
+  //   screen2.textContent = currentTime
+  //
+  //   if(currentTime === 0) {
+  //     clearInterval(timerId)
+  //     timer.classList.add('ringing')
+  //   }
+  // }
+  //
+  // let timerId
+  //
+  // startPause.addEventListener('click', () => {
+  //   if(timerId) {
+  //     clearInterval(timerId)
+  //     timerId = null
+  //   } else {
+  //     timerId = setInterval(countdown, 1000)
+  //   }
+  // })
 
 
 
@@ -190,8 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
   //   clearInterval(timer)
   //   timer = setInterval(toggleCarRandom, randRange(timeArray))
   // }
-  //
-  // // 1000 = Initial timer when the page is first loaded
+
+  // 1000 = Initial timer when the page is first loaded
   // var timer = setInterval(toggleCarRandom, 1000)
   //==========End of possible car with increment============
 
@@ -438,7 +500,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function start(){
     gameOver.classList.add('hidden')
-    youWinScreen.classList.add('hidden')
+    frogFly.classList.add('hidden')
     startSound.play()
     frogEnabled = true
     clearInterval(timerId)
