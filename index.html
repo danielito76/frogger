@@ -8,101 +8,112 @@
     <script src="js/app.js" charset="utf-8"></script>
   </head>
   <body>
-    <div class="game">
-      <header>
-        <div class="score">0</div>
-        <div class="timer">60</div>
-      </header>
-      <div id='fullScreeen' class="grid">
-        <!-- <div class="firstFrog" id="firstFrog"></div> -->
-        <div class='river' id="zero"></div>
-        <div class="lily" id="one"></div>
-        <div class='river' id="two"></div>
-        <div class="lily" id="three"></div>
-        <div class='river' id="four"></div>
-        <div class="lily" id="five"></div>
-        <div class='river' id="six"></div>
-        <div class="lily" id="seven"></div>
-        <div class='river' id="eight"></div>
-        <div class='river' id="nine"></div>
-        <div class='river' id="ten"></div>
-        <div class='river' id="eleven"></div>
-        <div class='river' id="twelve"></div>
-        <div class='river' id="thirteen"></div>
-        <div class='river' id="fourteen"></div>
-        <div class='river' id="fifteen"></div>
-        <div class='river' id="sixteen"></div>
-        <div class='river' id="seventeen"></div>
-        <div class='river' id="eighteen"></div>
-        <div class='river' id="nineteen"></div>
-        <div class='river' id="twenty"></div>
-        <div class='river' id="twenty_one"></div>
-        <div class='river' id="twenty_two"></div>
-        <div class='river' id="twenty_three"></div>
-        <div class='river' id="twenty_four"></div>
-        <div class='river' id="twenty_five"></div>
-        <div class='river' id="twenty_six"></div>
-        <div class='river' id="twenty_seven"></div>
-        <div class='river' id="twenty_eight"></div>
-        <div class='river' id="twenty_nine"></div>
-        <div class='river' id="thirty"></div>
-        <div class='river' id="thirty_one"></div>
-        <div class='river' id="thirty_two"></div>
-        <div class='river' id="thirty_three"></div>
-        <div class='river' id="thirty_four"></div>
-        <div class='river' id="thirty_five"></div>
-        <div id="thirty_six"></div>
-        <div id="thirty_seven"></div>
-        <div id="thirty_eight"></div>
-        <div id="thirty_nine"></div>
-        <div id="forty"></div>
-        <div id="forty_one"></div>
-        <div id="forty_two"></div>
-        <div id="forty_three"></div>
-        <div id="forty_four"></div>
-        <div id="forty_five"></div>
-        <div id="forty_six"></div>
-        <div id="forty_seven"></div>
-        <div id="forty_eight"></div>
-        <div id="forty_nine"></div>
-        <div id="fifty"></div>
-        <div id="fifty_one"></div>
-        <div id="fifty_two"></div>
-        <div id="fifty_three"></div>
-        <div id="fifty_four"></div>
-        <div id="fifty_five"></div>
-        <div id="fifty_six"></div>
-        <div id="fifty_seven"></div>
-        <div id="fifty_eight"></div>
-        <div id="fifty_nine"></div>
-        <div id="sixty"></div>
-        <div id="sixty_one"></div>
-        <div class='car' id="sixty_two"></div>
-        <div  id="sixty_three"></div>
-        <div id="sixty_four"></div>
-        <div id="sixty_five"></div>
-        <div id="sixty_six"></div>
-        <div id="sixty_seven"></div>
-        <div id="sixty_eight"></div>
-        <div id="sixty_nine"></div>
-        <div id="seventy"></div>
-        <div id="seventy_one"></div>
-        <div id="seventy_two"></div>
-        <div id="seventy_three"></div>
-        <div id="seventy_four"></div>
-        <div id="seventy_five"></div>
-        <div class="frog" id="seventy_six"></div>
-        <div id="seventy_seven"></div>
-        <div id="seventy_eight"></div>
-        <div id="seventy_nine"></div>
-        <div id="eighty"></div>
+    <main>
+      <div class="background">
+        <div class="game">
+          <div class="youWin hidden">You Win, dude!</div>
+          <div class="gameOver hidden">Game Over</div>
+          <div id='fullScreeen' class="grid">
+            <!-- <div class="firstFrog" id="firstFrog"></div> -->
+            <div class='river' id="zero"></div>
+            <div class="lily" id="one"></div>
+            <div class='river' id="two"></div>
+            <div class="lily" id="three"></div>
+            <div class='river' id="four"></div>
+            <div class="lily" id="five"></div>
+            <div class='river' id="six"></div>
+            <div class="lily" id="seven"></div>
+            <div class='river' id="eight"></div>
+            <div class='river' id="nine"></div>
+            <div class='river' id="ten"></div>
+            <div class='river' id="eleven"></div>
+            <div class='river' id="twelve"></div>
+            <div class='river' id="thirteen"></div>
+            <div class='river' id="fourteen"></div>
+            <div class='river' id="fifteen"></div>
+            <div class='river' id="sixteen"></div>
+            <div class='river' id="seventeen"></div>
+            <div class='river' id="eighteen"></div>
+            <div class='river' id="nineteen"></div>
+            <div class='river' id="twenty"></div>
+            <div class='river' id="twenty_one"></div>
+            <div class='river' id="twenty_two"></div>
+            <div class='river' id="twenty_three"></div>
+            <div class='river' id="twenty_four"></div>
+            <div class='river' id="twenty_five"></div>
+            <div class='river' id="twenty_six"></div>
+            <div class='river' id="twenty_seven"></div>
+            <div class='river' id="twenty_eight"></div>
+            <div class='river' id="twenty_nine"></div>
+            <div class='river' id="thirty"></div>
+            <div class='river' id="thirty_one"></div>
+            <div class='river' id="thirty_two"></div>
+            <div class='river' id="thirty_three"></div>
+            <div class='river' id="thirty_four"></div>
+            <div class='river' id="thirty_five"></div>
+            <div id="thirty_six"></div>
+            <div id="thirty_seven"></div>
+            <div id="thirty_eight"></div>
+            <div id="thirty_nine"></div>
+            <div id="forty"></div>
+            <div id="forty_one"></div>
+            <div id="forty_two"></div>
+            <div id="forty_three"></div>
+            <div id="forty_four"></div>
+            <div id="forty_five"></div>
+            <div id="forty_six"></div>
+            <div id="forty_seven"></div>
+            <div id="forty_eight"></div>
+            <div id="forty_nine"></div>
+            <div id="fifty"></div>
+            <div id="fifty_one"></div>
+            <div id="fifty_two"></div>
+            <div id="fifty_three"></div>
+            <div id="fifty_four"></div>
+            <div id="fifty_five"></div>
+            <div id="fifty_six"></div>
+            <div id="fifty_seven"></div>
+            <div id="fifty_eight"></div>
+            <div id="fifty_nine"></div>
+            <div id="sixty"></div>
+            <div id="sixty_one"></div>
+            <div class='car' id="sixty_two"></div>
+            <div  id="sixty_three"></div>
+            <div id="sixty_four"></div>
+            <div id="sixty_five"></div>
+            <div id="sixty_six"></div>
+            <div id="sixty_seven"></div>
+            <div id="sixty_eight"></div>
+            <div id="sixty_nine"></div>
+            <div id="seventy"></div>
+            <div id="seventy_one"></div>
+            <div id="seventy_two"></div>
+            <div id="seventy_three"></div>
+            <div id="seventy_four"></div>
+            <div id="seventy_five"></div>
+            <div class="frog" id="seventy_six"></div>
+            <div id="seventy_seven"></div>
+            <div id="seventy_eight"></div>
+            <div id="seventy_nine"></div>
+            <div id="eighty"></div>
+          </div>
+        </div>
       </div>
-      <section class="buttonssection">
-        <button type="button" name="button" id='btStart'>Start</button>
-        <button type="button" name="button" id='reset'>Reset</button>
-        <button type="button" name="button" id='backgroundSound'>Sound</button>
-        <button type="button" name="button" id='stopAllAudios'>Stop Audio</button>
-      </section>
-    </div>
+        <div class="board">
+          <header>
+            <h1>FrOGgeR lOBbER</h1>
+          </header>
+          <div class="">
+            <p>Score</p>
+            <div class="score">0</div>
+            <p>Time</p>
+            <div class="timer">60</div>
+          </div>
+          <section class="buttonssection">
+            <button type="button" name="button" id='btStart'>Start</button>
+            <button type="button" name="button" id='backgroundSound'>Sounds of nature</button>
+          </section>
+        </div>
+  </main>
   </body>
 </html>
