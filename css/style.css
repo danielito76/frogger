@@ -220,6 +220,8 @@ h1 {
 }
 
 .test {
+  text-align: center;
+  color: green;
   position: absolute;
   left: 0px;
   top: 0px;
@@ -236,4 +238,18 @@ h1 {
   background-repeat: no-repeat;
   background-position: center;
   z-index: 33;
+}
+#dazzle {
+  font-size: 50px;
+  color: #6c4dd3;
+  position: absolute;
+  bottom: 80px;
+  font-family: 'Barriecito', cursive;
+  -webkit-animation-name: test;
+  -webkit-animation-duration: 1s;
+  animation-iteration-count:infinite;
+}
+@-webkit-keyframes test {
+  from {font-size: 30px;}
+  to {font-size: 50px;
 }
