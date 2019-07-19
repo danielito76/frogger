@@ -13,11 +13,6 @@ body {
   justify-content: space-between;
   align-items: center;
   font-family: 'Barriecito', cursive;
-  /* padding-top: 120px; */
-  /* background-image: url('../img/background.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center; */
 }
 
 header {
@@ -48,17 +43,7 @@ header {
   height: calc(100% / 9);
   /* border: 1px solid green; */
 }
-/* .grid .firstFrog {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  position: absolute;
-  background-image: url('../img/lily.jpg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-} */
+
 
 .frog {
   background-image: url('../img/frog.gif');

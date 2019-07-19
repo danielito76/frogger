@@ -71,6 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let carBelowIndex = 62
 
   //LOGS
+
+
   let upperFrontTrunkTimer = setInterval(moveUpperFrontTrunk, 2000)
   let upperFrontTrunkIndex = 8
   let upperBackTrunkTimer = setInterval(moveUpperAboveTrunk, 2000)
@@ -85,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let lowerFrontTrunkIndex = 26
   let lowerBackTrunkTimer = setInterval(moveLowerBackTrunk, 500)
   let lowerBackTrunkIndex = 25
-
 
 
 
@@ -124,12 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  // ======try stop all sounds=======================
-  // const allAudio = [frogCall, badLuck, youWinSound, horn, secondHorn]
-  // let i
-  // audioButton.addEventListener('click', () => {
-  //   allAudio.forEach(audio => audio.pause())
-  // })
 
   // =========Countdown==================
   function countdown() {
@@ -138,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if(timeRemaining === 0) {
       clearInterval(timerId)
-      gameOverFunction()
+      gameOverModal()
     }
   }
   const startRestart = document.getElementById('btStart')
@@ -151,30 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-
-  // timerId = setInterval(countdown, 1000)
-  // ========= end of Countdown===============
-
-  // function countdown() {
-  //   currentTime--
-  //   screen2.textContent = currentTime
-  //
-  //   if(currentTime === 0) {
-  //     clearInterval(timerId)
-  //     timer.classList.add('ringing')
-  //   }
-  // }
-  //
-  // let timerId
-  //
-  // startPause.addEventListener('click', () => {
-  //   if(timerId) {
-  //     clearInterval(timerId)
-  //     timerId = null
-  //   } else {
-  //     timerId = setInterval(countdown, 1000)
-  //   }
-  // })
 
 
 
@@ -211,7 +182,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }if (currentFrogIndex > 45 && currentFrogIndex < 62 && carBelowIndex < 62) {
         secondHorn.play()
       } if (squares[currentFrogIndex].classList.contains('lily_frog')) {
-        gameOverFunction()
+        gameOverModal()
+      } if (squares[currentFrogIndex].classList.contains('river')) {
+        gameOverModal()
+      } if (squares[1].classList.contains('lily_frog') && squares[3].classList.contains('lily_frog') && squares[5].classList.contains('lily_frog') && squares[7].classList.contains('lily_frog')) {
+        youWin()
       }
       if(squares[currentFrogIndex].classList.contains('lily')) {
         frogOnThePad.play()
@@ -219,11 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
         currentFrogIndex = 76
         score++
         scoreBoard.textContent = score
-      } squares[currentFrogIndex].classList.add('frog')
-    // } if (squares[currentFrogIndex].classList.contains('river')) {
-    //   gameOverTrunks()
-    } if (squares[1].classList.contains('lily_frog') && squares[3].classList.contains('lily_frog') && squares[5].classList.contains('lily_frog') && squares[7].classList.contains('lily_frog')) {
-      youWin()
+      }
+      squares[currentFrogIndex].classList.add('frog')
     }
   }
 
@@ -246,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
       squares[carAboveIndex].classList.remove('cartoright')
       carAboveIndex = 44
     } else if(squares[currentFrogIndex] === squares[carAboveIndex]) {
-      gameOverFunction()
+      gameOverModal()
     }
   }
   //   clearInterval(timer)
@@ -268,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
       squares[carBelowIndex].classList.remove('cartoleft')
       carBelowIndex = 63
     } else if(squares[currentFrogIndex] === squares[carBelowIndex]) {
-      gameOverFunction()
+      gameOverModal()
     }
   }
 
@@ -283,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentFrogIndex +=1
       squares[currentFrogIndex].classList.add('frog')
       if (currentFrogIndex === 18) {
-        gameOverFunction()
+        gameOverModal()
       }
     }
     squares[upperFrontTrunkIndex].classList.add('river')
@@ -308,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentFrogIndex +=1
       squares[currentFrogIndex].classList.add('frog')
       if (currentFrogIndex === 18) {
-        gameOverFunction()
+        gameOverModal()
       }
     }
     squares[upperBackTrunkIndex].classList.add('river')
@@ -334,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentFrogIndex +=1
       squares[currentFrogIndex].classList.add('frog')
       if (currentFrogIndex === 27) {
-        gameOverFunction()
+        gameOverModal()
       }
     }
     squares[middleFrontTrunkIndex].classList.add('river')
@@ -359,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentFrogIndex +=1
       squares[currentFrogIndex].classList.add('frog')
       if (currentFrogIndex === 27) {
-        gameOverFunction()
+        gameOverModal()
       }
     }
     squares[middleBackTrunkIndex].classList.add('river')
@@ -385,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentFrogIndex +=1
       squares[currentFrogIndex].classList.add('frog')
       if (currentFrogIndex === 36) {
-        gameOverFunction()
+        gameOverModal()
       }
     }
     squares[lowerFrontTrunkIndex].classList.add('river')
@@ -410,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentFrogIndex +=1
       squares[currentFrogIndex].classList.add('frog')
       if (currentFrogIndex === 36) {
-        gameOverFunction()
+        gameOverModal()
       }
     }
     squares[lowerBackTrunkIndex].classList.add('river')
@@ -434,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //=====================GAMEOVERandYOUWIN======================================
 
 
-  const gameOverFunction = function () {
+  const gameOverModal = function () {
     squares[lowerFrontTrunkIndex].classList.remove('trunk')
     squares[lowerBackTrunkIndex].classList.remove('trunk')
     squares[middleBackTrunkIndex].classList.remove('trunk')
