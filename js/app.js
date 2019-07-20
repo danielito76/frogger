@@ -73,21 +73,35 @@ document.addEventListener('DOMContentLoaded', () => {
   //LOGS
 
 
+  // let upperFrontTrunkTimer = setInterval(moveUpperFrontTrunk, 2000)
+  // let upperFrontTrunkIndex = 8
+  // let upperBackTrunkTimer = setInterval(moveUpperAboveTrunk, 2000)
+  // let upperBackTrunkIndex = 7
+  //
+  // let middleFrontTrunkTimer = setInterval(moveMiddleFrontTrunk, 1000)
+  // let middleFrontTrunkIndex = 17
+  // let middleBackTrunkTimer = setInterval(moveMiddleBackTrunk, 1000)
+  // let middleBackTrunkIndex = 16
+  //
+  // let lowerFrontTrunkTimer = setInterval(moveLowerFrontTrunk, 500)
+  // let lowerFrontTrunkIndex = 26
+  // let lowerBackTrunkTimer = setInterval(moveLowerBackTrunk, 500)
+  // let lowerBackTrunkIndex = 25
+
   let upperFrontTrunkTimer = setInterval(moveUpperFrontTrunk, 2000)
   let upperFrontTrunkIndex = 8
   let upperBackTrunkTimer = setInterval(moveUpperAboveTrunk, 2000)
   let upperBackTrunkIndex = 7
 
-  let middleFrontTrunkTimer = setInterval(moveMiddleFrontTrunk, 1000)
+  let middleFrontTrunkTimer = setInterval(moveMiddleFrontTrunk, 1750)
   let middleFrontTrunkIndex = 17
-  let middleBackTrunkTimer = setInterval(moveMiddleBackTrunk, 1000)
+  let middleBackTrunkTimer = setInterval(moveMiddleBackTrunk, 1750)
   let middleBackTrunkIndex = 16
 
-  let lowerFrontTrunkTimer = setInterval(moveLowerFrontTrunk, 500)
+  let lowerFrontTrunkTimer = setInterval(moveLowerFrontTrunk, 1500)
   let lowerFrontTrunkIndex = 26
-  let lowerBackTrunkTimer = setInterval(moveLowerBackTrunk, 500)
+  let lowerBackTrunkTimer = setInterval(moveLowerBackTrunk, 1500)
   let lowerBackTrunkIndex = 25
-
 
 
 
@@ -515,10 +529,10 @@ document.addEventListener('DOMContentLoaded', () => {
     carBelowTimer = setInterval(moveCarBelow, 300)
     upperFrontTrunkTimer = setInterval(moveUpperFrontTrunk, 2000)
     upperBackTrunkTimer = setInterval(moveUpperAboveTrunk, 2000)
-    middleFrontTrunkTimer = setInterval(moveMiddleFrontTrunk, 1000)
-    middleBackTrunkTimer = setInterval(moveMiddleBackTrunk, 1000)
-    lowerFrontTrunkTimer = setInterval(moveLowerFrontTrunk, 500)
-    lowerBackTrunkTimer = setInterval(moveLowerBackTrunk, 500)
+    middleFrontTrunkTimer = setInterval(moveMiddleFrontTrunk, 1750)
+    middleBackTrunkTimer = setInterval(moveMiddleBackTrunk, 1750)
+    lowerFrontTrunkTimer = setInterval(moveLowerFrontTrunk, 1500)
+    lowerBackTrunkTimer = setInterval(moveLowerBackTrunk, 1500)
     squares[currentFrogIndex].classList.add('frog')
     squares[carBelowIndex].classList.add('cartoleft')
     squares[carAboveIndex].classList.add('cartoright')
