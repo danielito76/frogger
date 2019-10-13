@@ -16,7 +16,7 @@ To make things more challenging there are numerous moving obstacles that the fro
 ———————————————————————
 
 
-### Brief
+## Brief
 
 * Render a grid-based game in the browser
 * All the elements are rendered as a background img
@@ -43,7 +43,7 @@ To make things more challenging there are numerous moving obstacles that the fro
 
 ———————————————————————
 
-### Technologies Used
+## Technologies Used
 * HTML5 with HTML5 audio
 * CSS3 with animation
 * JavaScript (ES6)
@@ -56,7 +56,7 @@ To make things more challenging there are numerous moving obstacles that the fro
 ———————————————————————
 
 
-### Approach Taken
+## Approach Taken
 
 Making the MVP
 I started by setting up the HTML5 file with grid of squares.
@@ -78,7 +78,7 @@ I handled the whole project using Git and GitHub.
 ———————————————————————
 
 
-### Functionality:
+## Functionality:
 
 -Frog move + collision frog-lilypad + collision frog-river
 
@@ -262,11 +262,11 @@ function countdown() {
 
 
 
-### Screenshots
-# Gameplay at MVP
+## Screenshots
+### Gameplay at MVP
 ![Gameplay MVP1](/img/readme-screenshots/Gameplay_at_MVP_1.png)
 ![Gameplay MVP2](/img/readme-screenshots/Gameplay_at_MVP_2.png)
-# After some styling
+### After some styling
 ![After Styling1](/img/readme-screenshots/Gameplay_styling_1.png)
 ![After Styling2](/img/readme-screenshots/Gameplay_styling_2.png)
 ![After Styling3](/img/readme-screenshots/Gameplay_styling_3.png)
@@ -284,7 +284,7 @@ function countdown() {
 ———————————————————————
 
 
-### Bugs
+## Bugs
 logs are set in a way that allows the user to win just in the first 20-30 seconds, after they never make a bridge to  allow the frog to pass
 
 
@@ -292,7 +292,7 @@ logs are set in a way that allows the user to win just in the first 20-30 second
 ———————————————————————
 
 
-### Wins, Blockers and key learnings
+## Wins, Blockers and key learnings
 Wins:
 -Logs working principles
 -collisions and interactive sounds
@@ -308,7 +308,7 @@ Making all the Javascript functions working consistently together
 ———————————————————————
 
 
-### Future Content
+## Future Content
 * Mobile compatibility
 * Different difficulty levels.
 * Auto generated boards.
