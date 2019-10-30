@@ -8,7 +8,6 @@ The idea of Frogger is to guide a family of funny frogs across the road, and thr
 To make things more challenging there are numerous moving obstacles that the frogs must avoid to reach their destination.
 
 [Deployed project] (https://danielito76.github.io/frogger/)
-[GitHub Repo] (https://github.com/danielito76/frogger)
 
 
 ![First GIF](/img/readme-screenshots/frogger.gif)
