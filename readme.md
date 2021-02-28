@@ -5,7 +5,7 @@
 This is my first project from General Assembly's Software Engineering Immersive Course. It is an individual project built in a week.
 Frogger Lobber is a classic style, browser based game that i featured with a wide set of audio effects to make it funnier.  
 The idea of Frogger is to guide a family of funny frogs across the road, and through the river to their 4 lily pads at the top of the screen.
-To make things more challenging there are numerous moving obstacles that the frogs must avoid to reach their destination.
+To make things more challenging there are numerous moving obstacles that the frogs must avoid to reach their destinations.
 
 [Deployed project] (https://danielito76.github.io/frogger/)
 
